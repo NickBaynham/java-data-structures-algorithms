@@ -1,0 +1,11 @@
+# Tradeoffs in Sort Algorithms
+- What is the complexity of the algorithm?
+- How much space is needed?
+- Is the sort stable?
+- How many comparisons and how many element swaps needed?
+- Is the sort adaptive?
+- How does it scale as the input size increases?
+- Is extra storage needed during execution?
+- Do equal elements retain their initial order?
+- Is efficiency improved on nearly sorted lists?
+- Does the algorithm break early on detecting the list is sorted?
