@@ -1,0 +1,21 @@
+Contains Duplicate Problem
+
+Given an integer array nums
+
+Return true if any value appears at least twice in the array, and return false if every element is distinct
+
+true = duplicates
+false = distinct
+
+int[] nums = [ 1, 2, 3, 4, 4, 5, 6 ]
+return true
+
+int[] nums = [1, 2, 3, 4]
+return false
+
+A set always has distinct values
+
+if (nums.length < 2) return false;
+Set distinct<Integer> = new HashSet<>(nums);
+
+if (nums.size == distinct.length()) return false else return true;

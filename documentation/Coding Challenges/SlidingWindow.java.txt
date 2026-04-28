@@ -1,0 +1,62 @@
+Sliding Window
+
+The longest substring without repeating characters
+
+Given a string s, find the length of the longest substring without repeating characters.
+
+The substring must be contiguous
+
+s = "abcababcbc"
+solution = 3
+
+width = 0;
+
+0.  start: 0, winSize: 0, max: 0, window: ""
+1.  start: 0, winSize: 1, max: 1, window: "a"
+2.  start: 0, winSize: 2, max: 2, window: "ab"
+3.  start: 0, winSize: 3, max: 3, window: "abc"
+4.  start: 0, winSize: 4, max: 3, window: "abca"
+5.  start: 1, winSize: 3, max: 3, window: "bca"
+6.  start: 1, winSize: 4, max: 3, window: "bcab"
+7.  start: 2, winSize: 3, max: 3, window: "cab"
+8.  start: 2, winSize: 4, max: 3, window: "caba"
+9.  start: 3, winSize: 3, max: 3, window: "aba"
+10. start: 3, winSize: 4, max: 3, window: "abab"
+11. start: 4, winSize: 3, max: 3, window: "bab"
+12. start: 5, winSize: 3, max: 3, window: "abc"
+13. start: 5, winSize: 4, max: 3, window: "bcbc"
+14. start: 6, winSize: 3, max: 3, window: "cbc"
+- Loop should end, since window reached the end
+15. Start: 6, winSize: 4, max: 3, window: "cbc_"
+
+Case 0: null
+Case 1: ""
+Case 2: "a"
+
+public static boolean hasDuplicate(String s) {
+    Set<Character> seen = new HashSet<>();
+    for (char c : s.toCharArray()) {
+        if (!seen.add(c)) return true; // add() returns false if already present
+    }
+    return false;
+}
+
+public int lengthOfLongestSubstring(String s) {
+    if (s == null) return 0;
+
+    int start = 0, max = 0, winSize = 1;
+
+    while ((start + winSize) < s.length()) {
+        String window = s.substring(start, start + winSize - 1);
+        if (hasDuplicate(window)) {
+            start++; // shift to the right and retry
+            winSize = max;
+        } else {
+            if (winSize > max) {
+                max = winSize;
+            }
+            winSize++;
+        }
+    }
+    return max;
+}

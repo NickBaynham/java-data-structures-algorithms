@@ -1,0 +1,51 @@
+Binary Search
+
+Watch for boundary conditions, edge cases
+
+Given a sorted array of integers nums and an integer target, return the index of the target if it exists in the array.
+
+If the target does not exist, return -1.
+
+You must solve it with O(log n) runtime complexity.
+
+A sorted array might be:
+
+[ 1, 42, 308, 999, 1001, 1002, 6000 ]
+
+could be null, [] or [ 1 ]
+might have negatives [ -1000, 0, 42 ]
+
+target might be -6, 0, 23, 600
+
+Return the index of the target if it exists in the array.
+
+What do we do if not found? Let's return -1 if not found.
+
+Have to minimize complexity.
+
+Example:
+
+1, 2, 3, 4, 5, 6
+target is 5
+
+left = 0
+right = 5
+mid = 2
+
+right = 1
+
+public int search(int[] nums, int target) {
+    int left = 0;
+    int right = nums.length - 1; // position of the last element in the array
+    while (left <= right) {
+        int mid = (left + right) / 2;
+        if (target == nums[mid]) {
+            return mid;
+        }
+        if (target > nums[mid]) 
+            left = mid + 1;
+        else
+            right = mid - 1;
+    }
+    return -1;    
+}
